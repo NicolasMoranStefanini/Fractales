@@ -11,15 +11,29 @@ class ProductsView {
         $this->smarty->assign('title', "Music Store");
     }
 
-    function showItems($items) {
+    function showItems($items) { //Muestra todos los items
         $this->smarty->assign('items', $items);
         $this->smarty->display('templates/itemList.tpl');
     }
 
-    function showItem($item) {
+    function showCategorys($categorys) { //Muestra todas las categorias
+        $this->smarty->assign('categorys', $categorys);
+        $this->smarty->display('templates/categoryList.tpl');
+    }
+
+    function showItem($item) {  //Muestra el detalle de cada item
         $this->smarty->assign('item', $item);
         $this->smarty->display('templates/itemDetail.tpl');
     }
      
+    function ProductsByCategory($category,$products) {
+        $this->smarty->assign('category', $category);
+        $this->smarty->assign('products', $products);
+        $this->smarty->display('templates/productsbycategory.tpl');
+    }
 
+    function showError($msg) {
+        $this->smarty->assign('msg', $msg);
+        $this->smarty->display('templates/error.tpl');
+    }
 }

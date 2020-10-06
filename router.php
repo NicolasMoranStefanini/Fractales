@@ -26,16 +26,21 @@ switch ($params[0]) {
         $id = $params[1];
         $controller->showDetail($id);
         break;
+    case 'categorys':
+        $controller = new ProductsController();
+        $controller->showCategorys();
+        break;
+    case 'category':
+        $controller = new ProductsController();
+        $id = $params[1];
+        $controller->showProductsCategory($id);
+        break;
     case 'login':
         echo"Login";
         break;
     case 'register':
         echo"Register";
         break;
-    case 'categorias':
-        $controller = new ProductsController();
-        $controller->showCategorys();
-        break; 
     default:
         echo('404 Page not found');
         break;

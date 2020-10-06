@@ -20,7 +20,6 @@ class ProductsModel {
     /**
      * Devuelve todas los items de la base de datos.
      */
-
     function getAll() {
 
         // Envia la consulta 
@@ -34,11 +33,33 @@ class ProductsModel {
     }
 
     function get($id) {
-        $query = $this->db->prepare('SELECT * FROM products WHERE id = ?');
+        $query = $this->db->prepare("SELECT * FROM products WHERE id = ?");
         $query->execute([$id]);
         $item = $query->fetch(PDO::FETCH_OBJ);
         return $item;
     }
 
 
+    function getCategorys() {
+        // Envia la consulta 
+        $query = $this->db->prepare('SELECT * FROM categorys');
+        $query->execute();
+        // Obtengo la respuesta con un fetchAll
+        $categorys = $query->fetchAll(PDO::FETCH_OBJ); // arreglo de categorias
+        return $categorys;
+    }
+
+   function getCategoryById($id_cat) {
+        $query = $this->db->prepare('SELECT * FROM categorys WHERE id = ?');
+        $query->execute([$id_cat]);
+        $category = $query->fetch(PDO::FETCH_OBJ);
+        return $category;
+    }
+    
+    function getProductsByCategoryId($id_cat) {
+        $query = $this->db->prepare('SELECT * FROM products WHERE id_category = ?');
+        $query->execute([$id_cat]);
+        $products = $query->fetchAll(PDO::FETCH_OBJ);
+        return $products;
+    }
 }

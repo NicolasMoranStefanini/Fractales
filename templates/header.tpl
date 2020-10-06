@@ -16,10 +16,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav d-flex w-100">
                 <li class="nav-item active">
-                  <a class="nav-link" href="products">Products<span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="home">Products<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                  <a class="nav-link" href="products">Categorys<span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="categorys">Categorys<span class="sr-only">(current)</span></a>
                 </li>
                 {if isset($smarty.session.EMAIL_USER)}
                 <li class="nav-item ml-auto">
@@ -30,3 +30,4 @@
             </div>
         </nav>
     </header>
+    <main class="container"> <!-- inicio del contenido pricipal -->

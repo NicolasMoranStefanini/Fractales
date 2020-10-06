@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-06 04:57:02
+/* Smarty version 3.1.34-dev-7, created on 2020-10-06 06:05:52
   from 'C:\xampp\htdocs\proyectos\TPE\TPE1-WEBII\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f7bdcfe7173a0_58514575',
+  'unifunc' => 'content_5f7bed200f23a8_20157365',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ead390b4523b3d163266f26d14669c122017b52a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyectos\\TPE\\TPE1-WEBII\\templates\\header.tpl',
-      1 => 1601953021,
+      1 => 1601957146,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f7bdcfe7173a0_58514575 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f7bed200f23a8_20157365 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,10 +41,10 @@ function content_5f7bdcfe7173a0_58514575 (Smarty_Internal_Template $_smarty_tpl)
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav d-flex w-100">
                 <li class="nav-item active">
-                  <a class="nav-link" href="products">Products<span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="home">Products<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                  <a class="nav-link" href="products">Categorys<span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="categorys">Categorys<span class="sr-only">(current)</span></a>
                 </li>
                 <?php if ((isset($_SESSION['EMAIL_USER']))) {?>
                 <li class="nav-item ml-auto">
@@ -55,5 +55,6 @@ function content_5f7bdcfe7173a0_58514575 (Smarty_Internal_Template $_smarty_tpl)
               </ul>
             </div>
         </nav>
-    </header><?php }
+    </header>
+    <main class="container"> <!-- inicio del contenido pricipal --><?php }
 }

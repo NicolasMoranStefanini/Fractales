@@ -24,9 +24,27 @@ class ProductsController {
         if($item) {
             $this->view->showItem($item);
         }
-        //else {
-           // $this->view->showError('Tarea no encontrada');
-        //}
+        else {
+           $this->view->showError('Product out of stock');
+        }
     }
+
+    function showCategorys(){
+        // obtiene los productos del modelo
+        $categorys = $this->model->getCategorys();  
+        $this->view->showCategorys($categorys);
+    } 
+    
+    function showProductsCategory($id_cat) {
+        $category = $this->model->getCategoryById($id_cat);
+        $products = $this->model->getProductsByCategoryId($id_cat);
+        $this->view->ProductsByCategory($category,$products);
+    
+    }
+
+
+
+
+
 }
 
