@@ -1,6 +1,6 @@
 {include 'header.tpl'} 
     <h2> {$category->name} </h2>  
-        <ul class='list-group mt-5'>
+        <ul class='list-group  w-50 m-auto mt-5'>
         {foreach from=$products item=$product}
         <li class='list-group-item d-flex justify-content-between'>
             <div class='info'>

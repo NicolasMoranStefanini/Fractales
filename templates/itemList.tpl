@@ -1,6 +1,5 @@
     {include 'header.tpl'}
-        
-        <ul class='list-group mt-5'>
+        <ul class='list-group w-50 m-auto'>
             {foreach from=$items item=item}
             <li class='list-group-item d-flex justify-content-between'>
                 <div class='info'>

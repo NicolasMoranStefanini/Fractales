@@ -1,6 +1,7 @@
 <?php
 
 include_once 'app/controllers/products.controller.php';
+include_once 'app/controllers/auth.controller.php';
 
 // defino la base url para la construccion de links con urls semánticas
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
@@ -12,7 +13,7 @@ if (!empty($_GET['action'])) {
     $action = 'home'; // acción por defecto si no envían
 }
 
-// parsea la accion Ej: suma/1/2 --> ['suma', 1, 2]
+// parsea la accion
 $params = explode('/', $action);
 
 // determina que camino seguir según la acción
@@ -36,11 +37,25 @@ switch ($params[0]) {
         $controller->showProductsCategory($id);
         break;
     case 'login':
-        echo"Login";
+        $controller = new AuthContoller();
+        $controller->showLogin();
         break;
     case 'register':
-        echo"Register";
+        $controller = new AuthContoller();
+        $controller->showRegister();
         break;
+    case 'new-user':
+        $controller = new AuthContoller();
+        $controller->newUser();
+        break;
+    case 'verify':
+        $controller = new AuthContoller();
+        $controller->loginUser();
+        break;
+    case 'logout':
+        $controller = new AuthContoller();
+        $controller->logout();
+        break;   
     default:
         echo('404 Page not found');
         break;
