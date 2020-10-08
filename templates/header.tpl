@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Store</title>
-    <link rel="stylesheet" href="{BASE_URL}/css/style.css">
+    <link rel="stylesheet" href="{BASE_URL}css/style.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -29,7 +29,7 @@
           <ul class="navbar-nav">
               {if isset($smarty.session.EMAIL_USER)}
                 <li class="nav-item">
-                  <a class="nav-link" href="logout">{$smarty.session.EMAIL_USER}</a>
+                  <a class="nav-link" href="user">{$smarty.session.EMAIL_USER}</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="logout">Log out</a>
@@ -39,12 +39,12 @@
                   <a class="nav-link active" href="login">Log In</a>
                 </li>
                 <li class="nav-item ">
-                  <a class="nav-link" href="register">Register</a>
+                  <a class="nav-link" href="register">Sign up</a>
                 </li>
               {/if}
           </ul>
         </div>
       </nav>          
     </header>
-    <main w-50 m-auto mt-5>
+    <main class="style p-5">
   

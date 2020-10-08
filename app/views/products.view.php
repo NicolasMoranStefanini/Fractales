@@ -26,10 +26,15 @@ class ProductsView {
         $this->smarty->display('templates/itemDetail.tpl');
     }
      
-    function ProductsByCategory($category,$products) {
+    function ProductsByCategory($category,$products) {  //Muestra los productos por categoria
         $this->smarty->assign('category', $category);
         $this->smarty->assign('products', $products);
         $this->smarty->display('templates/productsbycategory.tpl');
+    }
+
+    function crudItems($items) { //Muestra el abm
+        $this->smarty->assign('items', $items);
+        $this->smarty->display('templates/crudProducts.tpl');
     }
 
     function showError($msg) {

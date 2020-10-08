@@ -1,45 +1,19 @@
-<?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-08 08:47:24
-  from 'C:\xampp\htdocs\proyectos\TPE\TPE1-WEBII\templates\header.tpl' */
-
-/* @var Smarty_Internal_Template $_smarty_tpl */
-if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f7eb5fc6aafc2_74569551',
-  'has_nocache_code' => false,
-  'file_dependency' => 
-  array (
-    'ead390b4523b3d163266f26d14669c122017b52a' => 
-    array (
-      0 => 'C:\\xampp\\htdocs\\proyectos\\TPE\\TPE1-WEBII\\templates\\header.tpl',
-      1 => 1602139641,
-      2 => 'file',
-    ),
-  ),
-  'includes' => 
-  array (
-  ),
-),false)) {
-function content_5f7eb5fc6aafc2_74569551 (Smarty_Internal_Template $_smarty_tpl) {
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <base href="<?php echo BASE_URL;?>
-">
+    <base href="{BASE_URL}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Store</title>
-    <link rel="stylesheet" href="<?php echo BASE_URL;?>
-css/style.css">
+    <link rel="stylesheet" href="{BASE_URL}css/style.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="home"><?php echo $_smarty_tpl->tpl_vars['title']->value;?>
-</a>
+      <nav class="navbar navbar-expand-lg navbar-light bg-success">
+        <a class="navbar-brand" href="home">ADMINISTRATOR</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -51,28 +25,32 @@ css/style.css">
             <li class="nav-item">
               <a class="nav-link" href="categorys">Categorys</a>
             </li>
+            <li class="nav-item">
+            <a class="nav-link" href="crudProducts">CRUD Products</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="crudCategorys">CRUD Categorys</a>
+            </li>
           </ul>
           <ul class="navbar-nav">
-              <?php if ((isset($_SESSION['EMAIL_USER']))) {?>
+              {if isset($smarty.session.EMAIL_USER)}
                 <li class="nav-item">
-                  <a class="nav-link" href="user"><?php echo $_SESSION['EMAIL_USER'];?>
-</a>
+                  <a class="nav-link" href="user">{$smarty.session.EMAIL_USER}</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="logout">Log out</a>
                 </li>
-              <?php } else { ?>
+              {else}
                 <li class="nav-item">
                   <a class="nav-link active" href="login">Log In</a>
                 </li>
                 <li class="nav-item ">
                   <a class="nav-link" href="register">Sign up</a>
                 </li>
-              <?php }?>
+              {/if}
           </ul>
         </div>
       </nav>          
     </header>
     <main class="style p-5">
-  <?php }
-}
+  

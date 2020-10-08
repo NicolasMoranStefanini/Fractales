@@ -1,22 +1,22 @@
     {include 'header.tpl'}
-        <div class="mt-5 w-25 mx-auto">
-            <form method="POST" action="new-user" class="needs-validation" novalidate>
+        <div class="mt-5 w-50 mx-auto">
+            <form method="POST" action="new-user" class="needs-validation" >
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name">
+                    <label for="name">Username</label>
+                    <input type="text" class="form-control" id="name" name="Username" requiered>
                 </div>
                 <div
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password">
+                    <input type="password" class="form-control" id="password" name="password" required>
                 </div>
                 <div class="form-group">
                     <label for="confirm-password">Confirm password</label>
-                    <input type="password" class="form-control" name="confirm-password">
+                    <input type="password" class="form-control" name="confirm-password" required>
                 </div>
                 <div class="form-group hide" id="form">
                     <label for="pass-admin">Key</label>
@@ -28,9 +28,13 @@
                     {$error}
                 </div>
                 {/if}
-                <button type="submit" class="btn btn-success">Create account</button>
-                <button type="button" class="btn btn-primary" id="admin">Admin</button>
+                <div>
+                <button type="submit" class="btn btn-success w-25 ">Sign me up!</button>
+                <button type="button" class="btn btn-primary w-25" id="admin">Admin</button>
+                </div>
             </form>
-        </div>
-        <script src="{BASE_URL}/js/admin.js"></script>
-    {include file='footer.tpl'}
+            
+            <p class="m-2">Already a member? <a href="login"> Log In </a> </p>
+            </div>
+            <script src="{BASE_URL}/js/main.js"></script>
+            {include file='footer.tpl'}

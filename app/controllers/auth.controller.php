@@ -19,26 +19,25 @@ class AuthContoller {
     public function loginUser() {
         $email = $_POST['email'];
         $password = $_POST['password'];
-
+        
         // verifico campos obligatorios
-        if (empty($email) || empty($password)) {
+       if (empty($email) || empty($password)) {
             $this->view->showFormLogin("Faltan datos obligatorios");
             die();
         }
 
         // obtengo el usuario
-        $user = $this->model->getByEmail($email);
+        $user = $this->model->getByMail($email);
 
         // si el usuario existe, y las contraseñas coinciden
-        if ($user && password_verify($password, $user->password)) {
-            
+        if ($user && password_verify($password, $user->password) ) {
             // armo la sesion del usuario
             session_start();
             $_SESSION['ID_USER'] = $user->id;
-            $_SESSION['EMAIL_USER'] = $user->email;
-
-            // redirigimos al listado
-            header("Location: " . BASE_URL . 'home'); 
+            $_SESSION['EMAIL_USER'] = $user->mail;
+            $_SESSION['ADMIN'] = $user->admin;
+            // redirige al home
+                header("Location: " . BASE_URL . 'home'); 
             
         } else {
             $this->view->showFormLogin("Credenciales inválidas");

@@ -9,7 +9,6 @@
                     <label for="password">Password</label>
                     <input type="password" class="form-control" id="password" name="password">
                 </div>
-
                 {if $error}
                 <div class="alert alert-danger">
                     {$error}

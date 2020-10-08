@@ -50,7 +50,7 @@ class ProductsModel {
     }
 
    function getCategoryById($id_cat) {
-        $query = $this->db->prepare('SELECT * FROM categorys WHERE id = ?');
+        $query = $this->db->prepare('SELECT * FROM categorys WHERE id_category = ?');
         $query->execute([$id_cat]);
         $category = $query->fetch(PDO::FETCH_OBJ);
         return $category;
@@ -62,4 +62,9 @@ class ProductsModel {
         $products = $query->fetchAll(PDO::FETCH_OBJ);
         return $products;
     }
+
+    function removeProduct($id) {  
+        $query = $this->db->prepare('DELETE FROM `products` WHERE `products`.`id` = ?');
+        $query->execute([$id]);
+  }
 }

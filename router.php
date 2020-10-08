@@ -56,6 +56,19 @@ switch ($params[0]) {
         $controller = new AuthContoller();
         $controller->logout();
         break;   
+    case 'crudProducts':
+        $controller = new ProductsController(); 
+        $controller->crudItems();
+        break;
+    case 'deleteProduct':
+        $controller = new ProductsController();
+        $id = $params[1];
+        $controller->deleteProduct($id);
+        break;
+    case 'modifyProduct':
+        break;
+    case 'addProduct':
+        break;
     default:
         echo('404 Page not found');
         break;

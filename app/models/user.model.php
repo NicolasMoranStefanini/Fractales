@@ -15,8 +15,8 @@ class UserModel {
     /**
      * Devuelve un usuario dado un email.
      */
-    public function getByEmail($email) {
-        $query = $this->db->prepare('SELECT * FROM users WHERE email = ?');
+    public function getByMail($email) {
+        $query = $this->db->prepare('SELECT * FROM users WHERE mail = ?');
         $query->execute([$email]);
         return $query->fetch(PDO::FETCH_OBJ);
     }
