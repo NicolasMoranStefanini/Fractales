@@ -65,9 +65,40 @@ switch ($params[0]) {
         $id = $params[1];
         $controller->deleteProduct($id);
         break;
-    case 'modifyProduct':
+    case 'updateProduct':
+        $controller = new ProductsController();
+        $id = $params[1];
+        $controller->updateProduct($id);
         break;
-    case 'addProduct':
+    case 'doUpdate':
+        $controller = new ProductsController(); 
+        $controller->doUpdate();
+        break;
+    case 'newProduct':
+        $controller = new ProductsController(); 
+        $controller->newProduct();
+        break;
+    case 'crudCategorys':
+        $controller = new ProductsController(); 
+        $controller->crudCategorys();
+        break;
+    case 'newCategory':
+        $controller = new ProductsController(); 
+        $controller->newCategory();
+        break;
+    case 'deleteCategory':
+        $controller = new ProductsController();
+        $id = $params[1];
+        $controller->deleteCategory($id);
+        break; 
+    case 'updateCategory':
+        $controller = new ProductsController();
+        $id = $params[1];
+        $controller->crudCategorys($id);
+        break;
+    case 'doUpdateCategory':
+        $controller = new ProductsController(); 
+        $controller->doUpdateCategory();
         break;
     default:
         echo('404 Page not found');

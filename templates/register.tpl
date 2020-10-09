@@ -36,5 +36,5 @@
             
             <p class="m-2">Already a member? <a href="login"> Log In </a> </p>
             </div>
-            <script src="{BASE_URL}/js/main.js"></script>
+            <script src="{BASE_URL}js/main.js"></script>
             {include file='footer.tpl'}

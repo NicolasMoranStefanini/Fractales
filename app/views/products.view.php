@@ -32,9 +32,23 @@ class ProductsView {
         $this->smarty->display('templates/productsbycategory.tpl');
     }
 
-    function crudItems($items) { //Muestra el abm
+    function crudItems($items , $categorys) { //Muestra el abm productos
         $this->smarty->assign('items', $items);
+        $this->smarty->assign('categorys', $categorys);
         $this->smarty->display('templates/crudProducts.tpl');
+    }
+
+    function showUpdate($product, $categorys){ //Muestra el formulario de edicion
+        $this->smarty->assign('product', $product);
+        $this->smarty->assign('categorys', $categorys);
+        $this->smarty->display('templates/updateProduct.tpl');
+    }
+
+    function crudCategorys($categorys, $id = null, $category = null){
+        $this->smarty->assign('categorys', $categorys);
+        $this->smarty->assign('category', $category);
+        $this->smarty->assign('id', $id);
+        $this->smarty->display('templates/crudCategorys.tpl');
     }
 
     function showError($msg) {

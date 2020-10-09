@@ -5,8 +5,8 @@
 {/if}
         <ul class='list-group w-50 m-auto'>
             {foreach from=$items item=item}
-            <li class='list-group-item d-flex justify-content-between'>
-                <div class='info'>
+            <li class='btn btn-dark list-group-item d-flex justify-content-between'>
+                <div class='info text-muted'>
                     <strong>{$item->brand}</strong> {$item->name}
                 </div>
 

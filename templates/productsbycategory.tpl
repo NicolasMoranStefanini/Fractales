@@ -6,8 +6,8 @@
     <h2> {$category->name} </h2>  
         <ul class='list-group  w-50 m-auto mt-5'>
         {foreach from=$products item=product}
-        <li class='list-group-item d-flex justify-content-between'>
-            <div class='info'>
+        <li class='btn btn-dark list-group-item d-flex justify-content-between'>
+            <div class='info text-muted'>
                 <strong>{$product->brand}</strong> {$product->name}
             </div>
             <div class='actions'>

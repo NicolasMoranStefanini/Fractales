@@ -23,7 +23,7 @@ class ProductsController {
     }   
 
     /*
-    * Consulta el detalle de cada item
+    * Consulta e imprime el detalle de cada item
     */
     function showDetail($id) {
         $item = $this->model->get($id);
@@ -44,7 +44,7 @@ class ProductsController {
     } 
     
     /*
-    * Muestra los productos por categoria
+    * Obtiene y muestra los productos por categoria
     */
     function showProductsCategory($id_cat) {
         $category = $this->model->getCategoryById($id_cat);
@@ -53,8 +53,8 @@ class ProductsController {
     
     }
 
-     /**
-     * Barrera de seguridad para usuario logueado
+     /*
+     * Barrera de seguridad para usuario administrador
      */
     function onlyAdmins() {
         if (!isset($_SESSION['ID_USER'])) {
@@ -67,24 +67,103 @@ class ProductsController {
         }
     }
 
+
+    
     /*
-    * Muestra el abm, si el usuario es administrador
+    * Control de abm productos
     */
     function crudItems(){
         $this->onlyAdmins();
         // obtiene los productos del modelo
         $items = $this->model->getAll();  
-        $this->view->crudItems($items);
+        $categorys = $this->model->getCategorys();
+        $this->view->crudItems($items,$categorys);
     } 
     
-    /**
-     * Elimina el producto del sistema
-     */
-    function deleteProduct($id) {
-        $this->onlyAdmins();
-        $this->model->removeProduct($id);
-        header("Location: " . BASE_URL . crudProducts); 
-    }
+        /*
+        * Elimina el producto del sistema
+        */
+        function deleteProduct($id) {
+            $this->onlyAdmins();
+            $this->model->removeProduct($id);
+            header("Location: " . BASE_URL . crudProducts); 
+        }
 
+        /*
+        * Modifica un producto
+        */
+        function updateProduct($id) {
+            $this->onlyAdmins();
+            $categorys = $this->model->getCategorys();
+            $product = $this->model->get($id);
+            $this->view->showUpdate($product,$categorys);
+        }
+
+        /*
+        * Realiza la actualizacion
+        */
+        function doUpdate(){
+            $this->onlyAdmins();
+            $name = $_POST['name'];
+            $brand = $_POST['brand'];
+            $details = $_POST['details'];
+            $category = $_POST['category'];
+            $id = $_POST['id'];
+            $this->model->updateProduct($name, $brand, $details, $category, $id);
+            header("Location: " . BASE_URL . crudProducts); 
+        }
+
+        /*
+        * Agrega un producto
+        */
+        function newProduct() {
+            $this->onlyAdmins();
+            $name = $_POST['name'];
+            $brand = $_POST['brand'];
+            $details = $_POST['details'];
+            $category = $_POST['category'];
+            $this->model->insertProduct($name, $brand, $details, $category);
+            header("Location: " . BASE_URL . crudProducts); 
+        }
+
+    /*
+    * Control de ABM Categorias
+    */
+    function crudCategorys($id = null){
+        $this->onlyAdmins();
+        $categorys = $this->model->getCategorys();
+        $category = $this->model->getCategoryById($id);
+        $this->view->crudCategorys($categorys,$id,$category);
+    } 
+
+        /*
+        * Nueva categoria
+        */
+        function newCategory() {
+            $this->onlyAdmins();
+            $name = $_POST['name'];
+            $this->model->insertCategory($name);
+            header("Location: " . BASE_URL . crudCategorys); 
+        }
+
+        /*
+        * Elimina una categoria por id
+        */
+        function deleteCategory($id) {
+            $this->onlyAdmins();
+            $this->model->removeCategory($id);
+            header("Location: " . BASE_URL . crudCategorys); 
+        }
+
+        /*
+        * Modifica una categoria por id
+        */
+        function doUpdateCategory() {
+            $this->onlyAdmins();
+            $name = $_POST['name'];
+            $id = $_POST['id'];
+            $this->model->updateCategory($name,$id);
+            header("Location: " . BASE_URL . crudCategorys); 
+        }
 }
 

@@ -8,7 +8,6 @@
         <h1>{$item->brand}</h1>
         <h3>{$item->name}</h3>
         <p>{$item->details}</p>  
-     
 
     </main>
 

@@ -18,7 +18,7 @@ class ProductsModel {
     }
 
     /**
-     * Devuelve todas los items de la base de datos.
+     * Devuelve todos los productos de la base de datos.
      */
     function getAll() {
 
@@ -32,6 +32,9 @@ class ProductsModel {
         return $items;
     }
 
+    /*
+    * Devuelve un producto
+    */
     function get($id) {
         $query = $this->db->prepare("SELECT * FROM products WHERE id = ?");
         $query->execute([$id]);
@@ -39,7 +42,9 @@ class ProductsModel {
         return $item;
     }
 
-
+    /*
+    * Devuelve todas las categorias
+    */
     function getCategorys() {
         // Envia la consulta 
         $query = $this->db->prepare('SELECT * FROM categorys');
@@ -49,6 +54,9 @@ class ProductsModel {
         return $categorys;
     }
 
+    /*
+    *Devuelve una categoria por id
+    */
    function getCategoryById($id_cat) {
         $query = $this->db->prepare('SELECT * FROM categorys WHERE id_category = ?');
         $query->execute([$id_cat]);
@@ -56,6 +64,9 @@ class ProductsModel {
         return $category;
     }
     
+    /*
+    *Devuelve todos los productos por categoria
+    */
     function getProductsByCategoryId($id_cat) {
         $query = $this->db->prepare('SELECT * FROM products WHERE id_category = ?');
         $query->execute([$id_cat]);
@@ -63,8 +74,55 @@ class ProductsModel {
         return $products;
     }
 
+    /*
+    * Remueve un producto por id
+    */
     function removeProduct($id) {  
-        $query = $this->db->prepare('DELETE FROM `products` WHERE `products`.`id` = ?');
+        $query = $this->db->prepare('DELETE FROM products WHERE products.id = ?');
         $query->execute([$id]);
   }
+
+    /*
+    * Actualiza un producto por id
+    */
+    function updateProduct($name, $brand, $details, $category, $id) {
+
+        $query = $this->db->prepare('UPDATE `products` SET `brand` = ?, `details`=?, `name`=?, `id_category`=? WHERE `products`.`id` = ?');
+        $query->execute([$brand,$details,$name,$category,$id]);
+    }
+
+    /*
+    * Inserta un producto
+    */
+    function insertProduct($name, $brand, $details, $category) {
+        $query = $this->db->prepare('INSERT INTO products (`name`, brand, details, id_category) VALUES (?,?,?,?)');
+        $query->execute([$name, $brand, $details, $category]);
+        //return $this->db->lastInsertId();
+    }
+
+    function insertCategory($name){
+        $query = $this->db->prepare('INSERT INTO `categorys` (`id_category`, `name`) VALUES (NULL, ?)');
+        $query->execute([$name]);
+    }
+
+    
+    /*
+    * Remueve una categoria por id
+    */
+    function removeCategory($id) {  
+        $query = $this->db->prepare('DELETE FROM `categorys` WHERE categorys.id_category = ?');
+        $query->execute([$id]);
+     }
+
+    /*
+    * Actualiza una categoria por id
+    */
+    function updateCategory ($name,$id){
+        $query = $this->db->prepare('UPDATE `categorys` SET `name` = ? WHERE categorys.id_category = ?');
+        $query->execute([$name,$id]);
+
+    
+
+    }
+
 }
