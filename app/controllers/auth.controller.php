@@ -37,11 +37,54 @@ class AuthContoller {
             $_SESSION['EMAIL_USER'] = $user->mail;
             $_SESSION['ADMIN'] = $user->admin;
             // redirige al home
-                header("Location: " . BASE_URL . 'home'); 
+               header("Location: " . BASE_URL . 'home'); 
             
         } else {
-            $this->view->showFormLogin("Credenciales inválidas");
+            $this->view->showFormLogin("Wrong Data");
         }
+    }
+
+    function createAccount(){
+        //Recibo los parametros del post
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $password2 = $_POST['confirm-password'];
+        $username = $_POST['username'];
+        $admin = 0;
+        if ($_POST['username']== null){     //Verifico campo usuario completo porque boostrap no lo estaba haciendo
+            $this->view->showRegisterForm("Empty username field");
+            die();
+        }
+
+        if ($password != $password2) {      //Verifico que las contraseñas coincidan
+            $this->view->showRegisterForm("Passwords do not match");
+            die();
+        }
+
+        $users = $this->model->getUsers();     //Obtengo los usuarios
+        foreach ($users as $user) {    // Recorro buscando coincidencias
+            if ($email == $user->mail) {
+                $this->view->showRegisterForm("The email is already in use");
+                die();
+            }
+        }
+
+
+        if ($_POST['key']!= null){      //Verifico si el usuario ingresó una llave de administrador
+            $userKey = $_POST['key'];
+            $key = $this->model->getKey();
+            if (password_verify($userKey, $key->value)) {
+                $admin = 1;
+            }
+            else {
+                $this->view->showRegisterForm("Wrong key");
+                die();
+            }
+
+        }
+        $pw = password_hash($password, PASSWORD_DEFAULT);
+        $this->model->newUser($email,$username,$admin,$pw); //Agregado de usuario a la base de datos
+        header("Location: " . BASE_URL . 'login');      
     }
 
     function showRegister() {

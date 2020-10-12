@@ -20,4 +20,31 @@ class UserModel {
         $query->execute([$email]);
         return $query->fetch(PDO::FETCH_OBJ);
     }
+
+    /*
+    * Obtengo la llave
+    */
+    public function getKey(){
+        $query = $this->db->prepare('SELECT * FROM adminkey WHERE 1');
+        $query->execute();
+        return $query->fetch(PDO::FETCH_OBJ);
+    } 
+
+    /*
+    * Envia todos los usuarios
+    */
+    public function getUsers() {
+        $query = $this->db->prepare('SELECT * FROM users');
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    /*
+    * Agrega el usuario nuevo
+    */
+    public function newUser($email,$username,$admin,$password) {
+        $query = $this->db->prepare('INSERT INTO `users` (`id`, `nombre`, `mail`, `admin`, `password`) VALUES (NULL,?,?,?,?)');
+        $query->execute([$username,$email,$admin,$password]);
+    }
+
 }

@@ -120,9 +120,6 @@ class ProductsModel {
     function updateCategory ($name,$id){
         $query = $this->db->prepare('UPDATE `categorys` SET `name` = ? WHERE categorys.id_category = ?');
         $query->execute([$name,$id]);
-
-    
-
     }
 
 }

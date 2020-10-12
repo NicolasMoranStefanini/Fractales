@@ -1,5 +1,5 @@
     {include 'header.tpl'}
-        <div class="mt-5 w-25 mx-auto">
+        <div class="mt-5 w-25 mx-auto needs-validation" novalidated>
             <form method="POST" action="verify">
                 <div class="form-group">
                     <label for="email">Email</label>
@@ -7,7 +7,7 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password">
+                    <input type="password" class="form-control" id="password" aria-describedby="passwordHelpInline" name="password">
                 </div>
                 {if $error}
                 <div class="alert alert-danger">

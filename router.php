@@ -46,7 +46,7 @@ switch ($params[0]) {
         break;
     case 'new-user':
         $controller = new AuthContoller();
-        $controller->newUser();
+        $controller->createAccount();
         break;
     case 'verify':
         $controller = new AuthContoller();
