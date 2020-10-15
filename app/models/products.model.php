@@ -111,7 +111,8 @@ class ProductsModel {
     */
     function removeCategory($id) {  
         $query = $this->db->prepare('DELETE FROM `categorys` WHERE categorys.id_category = ?');
-        $query->execute([$id]);
+        $result = $query->execute([$id]);
+        return ($result);
      }
 
     /*

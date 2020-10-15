@@ -44,10 +44,11 @@ class ProductsView {
         $this->smarty->display('templates/updateProduct.tpl');
     }
 
-    function crudCategorys($categorys, $id = null, $category = null){
+    function crudCategorys($categorys, $id = null, $category = null, $error = null){
         $this->smarty->assign('categorys', $categorys);
         $this->smarty->assign('category', $category);
         $this->smarty->assign('id', $id);
+        $this->smarty->assign('error', $error);
         $this->smarty->display('templates/crudCategorys.tpl');
     }
 

@@ -151,8 +151,13 @@ class ProductsController {
         */
         function deleteCategory($id) {
             $this->onlyAdmins();
-            $this->model->removeCategory($id);
-            header("Location: " . BASE_URL . crudCategorys); 
+            $result = $this->model->removeCategory($id);
+            if ($result) {
+                header("Location: " . BASE_URL . crudCategorys); 
+            }
+            else {
+                $this->view->showError('Category in use, delete the products to proceed');
+            }
         }
 
         /*
