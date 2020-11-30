@@ -37,10 +37,10 @@ class ProductsController {
     /*
     * Consulta e imprime todas las categorias
     */
-    function showCategorys(){
+    function showCategories(){
         // obtiene los productos del modelo
-        $categorys = $this->model->getCategorys();  
-        $this->view->showCategorys($categorys);
+        $categories = $this->model->getCategories();  
+        $this->view->showCategories($categories);
     } 
     
     /*
@@ -70,14 +70,14 @@ class ProductsController {
 
     
     /*
-    * Control de abm productos
+    * Control de ABM productos
     */
     function crudItems(){
         $this->onlyAdmins();
         // obtiene los productos del modelo
         $items = $this->model->getAll();  
-        $categorys = $this->model->getCategorys();
-        $this->view->crudItems($items,$categorys);
+        $categories = $this->model->getCategories();
+        $this->view->crudItems($items,$categories);
     } 
     
         /*
@@ -94,9 +94,9 @@ class ProductsController {
         */
         function updateProduct($id) {
             $this->onlyAdmins();
-            $categorys = $this->model->getCategorys();
+            $categories = $this->model->getCategories();
             $product = $this->model->get($id);
-            $this->view->showUpdate($product,$categorys);
+            $this->view->showUpdate($product,$categories);
         }
 
         /*
@@ -129,11 +129,11 @@ class ProductsController {
     /*
     * Control de ABM Categorias
     */
-    function crudCategorys($id = null){
+    function crudCategories($id = null){
         $this->onlyAdmins();
-        $categorys = $this->model->getCategorys();
+        $categories = $this->model->getCategories();
         $category = $this->model->getCategoryById($id);
-        $this->view->crudCategorys($categorys,$id,$category);
+        $this->view->crudCategories($categories,$id,$category);
     } 
 
         /*
@@ -143,7 +143,7 @@ class ProductsController {
             $this->onlyAdmins();
             $name = $_POST['name'];
             $this->model->insertCategory($name);
-            header("Location: " . BASE_URL . crudCategorys); 
+            header("Location: " . BASE_URL . crudCategories); 
         }
 
         /*
@@ -153,7 +153,7 @@ class ProductsController {
             $this->onlyAdmins();
             $result = $this->model->removeCategory($id);
             if ($result) {
-                header("Location: " . BASE_URL . crudCategorys); 
+                header("Location: " . BASE_URL . crudCategories); 
             }
             else {
                 $this->view->showError('Category in use, delete the products to proceed');
@@ -168,7 +168,8 @@ class ProductsController {
             $name = $_POST['name'];
             $id = $_POST['id'];
             $this->model->updateCategory($name,$id);
-            header("Location: " . BASE_URL . crudCategorys); 
+            header("Location: " . BASE_URL . crudCategories); 
         }
+
 }
 

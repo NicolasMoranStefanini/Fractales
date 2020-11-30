@@ -2,6 +2,7 @@
 {include 'formProduct.tpl'}
 <section>    
     <ul class='list-group w-50 m-3 m-auto'>
+    <h1>Products</h1>
     {foreach from=$items item=item}
         <li class='btn btn-dark list-group-item d-flex justify-content-between'>
         <div class='info text-muted'>

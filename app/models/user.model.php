@@ -22,15 +22,6 @@ class UserModel {
     }
 
     /*
-    * Obtengo la llave
-    */
-    public function getKey(){
-        $query = $this->db->prepare('SELECT * FROM adminkey WHERE 1');
-        $query->execute();
-        return $query->fetch(PDO::FETCH_OBJ);
-    } 
-
-    /*
     * Envia todos los usuarios
     */
     public function getUsers() {
@@ -39,6 +30,11 @@ class UserModel {
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function getUser($id) {
+        $query = $this->db->prepare('SELECT * FROM users WHERE id = ?');
+        $query->execute([$id]);
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
     /*
     * Agrega el usuario nuevo
     */
@@ -47,4 +43,19 @@ class UserModel {
         $query->execute([$username,$email,$admin,$password]);
     }
 
+    /*
+    * Actualiza el estado de administrador por id
+    */
+    function updateAdmin ($admin,$id){
+        $query = $this->db->prepare('UPDATE `users` SET `admin` = ? WHERE users.id = ?');
+        $query->execute([$admin,$id]); 
+    }
+
+    /*
+    * Remueve un usuario por id
+    */
+    function removeUser($id) {  
+        $query = $this->db->prepare('DELETE FROM users WHERE id = ?');
+        $query->execute([$id]);
+    }
 }

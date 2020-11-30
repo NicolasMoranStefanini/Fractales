@@ -27,9 +27,9 @@ switch ($params[0]) {
         $id = $params[1];
         $controller->showDetail($id);
         break;
-    case 'categorys':
+    case 'categories':
         $controller = new ProductsController();
-        $controller->showCategorys();
+        $controller->showCategories();
         break;
     case 'category':
         $controller = new ProductsController();
@@ -37,23 +37,23 @@ switch ($params[0]) {
         $controller->showProductsCategory($id);
         break;
     case 'login':
-        $controller = new AuthContoller();
+        $controller = new AuthController();
         $controller->showLogin();
         break;
     case 'register':
-        $controller = new AuthContoller();
+        $controller = new AuthController();
         $controller->showRegister();
         break;
     case 'new-user':
-        $controller = new AuthContoller();
+        $controller = new AuthController();
         $controller->createAccount();
         break;
     case 'verify':
-        $controller = new AuthContoller();
+        $controller = new AuthController();
         $controller->loginUser();
         break;
     case 'logout':
-        $controller = new AuthContoller();
+        $controller = new AuthController();
         $controller->logout();
         break;   
     case 'crudProducts':
@@ -78,9 +78,9 @@ switch ($params[0]) {
         $controller = new ProductsController(); 
         $controller->newProduct();
         break;
-    case 'crudCategorys':
+    case 'crudCategories':
         $controller = new ProductsController(); 
-        $controller->crudCategorys();
+        $controller->crudCategories();
         break;
     case 'newCategory':
         $controller = new ProductsController(); 
@@ -94,11 +94,25 @@ switch ($params[0]) {
     case 'updateCategory':
         $controller = new ProductsController();
         $id = $params[1];
-        $controller->crudCategorys($id);
+        $controller->crudCategories($id);
         break;
     case 'doUpdateCategory':
         $controller = new ProductsController(); 
         $controller->doUpdateCategory();
+        break;
+    case 'crudUsers':
+        $controller = new AuthController();
+        $controller->crudUsers();
+        break;
+    case 'toggleAdmin':
+        $controller = new AuthController();
+        $id = $params[1];
+        $controller->toggleAdmin($id);
+        break;
+    case 'deleteUser':
+        $controller = new AuthController();
+        $id = $params[1];
+        $controller->removeUser($id);
         break;
     default:
         echo('404 Page not found');

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-12 06:39:23
+/* Smarty version 3.1.34-dev-7, created on 2020-11-30 20:27:35
   from 'C:\xampp\htdocs\proyectos\TPE\TPE1-WEBII\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f83ddfbbeaf77_77826560',
+  'unifunc' => 'content_5fc547a772a330_57809345',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ead390b4523b3d163266f26d14669c122017b52a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyectos\\TPE\\TPE1-WEBII\\templates\\header.tpl',
-      1 => 1602477551,
+      1 => 1606762373,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f83ddfbbeaf77_77826560 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fc547a772a330_57809345 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,13 +55,13 @@ img/favicon.png" width="30" height="30" class="d-inline-block align-top" alt="ic
               <a class="nav-link" href="home">Products <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="categorys">Categorys</a>
+              <a class="nav-link" href="categories">Categories</a>
             </li>
           </ul>
           <ul class="navbar-nav">
               <?php if ((isset($_SESSION['EMAIL_USER']))) {?>
                 <li class="nav-item">
-                  <a class="nav-link" href="home"><?php echo $_SESSION['EMAIL_USER'];?>
+                  <a class="nav-link" ><?php echo $_SESSION['EMAIL_USER'];?>
 </a>
                 </li>
                 <li class="nav-item">

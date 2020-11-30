@@ -4,7 +4,7 @@
   {include 'header.tpl'}
 {/if}
     <ul class='list-group w-50 m-auto mt-3'>
-        {foreach from=$categorys item=category}
+        {foreach from=$categories item=category}
             <li class='btn btn-dark list-group-item d-flex justify-content-between'>
             <div class='info text-muted'>
                 <strong>{$category->name}</strong>

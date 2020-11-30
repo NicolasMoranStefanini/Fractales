@@ -2,7 +2,7 @@
 include_once 'app/views/auth.view.php';
 include_once 'app/models/user.model.php';
 
-class AuthContoller {
+class AuthController {
 
     private $model;
     private $view;
@@ -10,6 +10,7 @@ class AuthContoller {
     public function __construct() {
         $this->model = new UserModel();
         $this->view = new AuthView();
+        session_start();
     }
 
     public function showLogin() {
@@ -51,40 +52,45 @@ class AuthContoller {
         $password2 = $_POST['confirm-password'];
         $username = $_POST['username'];
         $admin = 0;
-        if ($_POST['username']== null){     //Verifico campo usuario completo porque boostrap no lo estaba haciendo
+        //Verifico campo usuario completo porque boostrap no lo estaba haciendo
+        if ($_POST['username']== null){    
             $this->view->showRegisterForm("Empty username field");
             die();
         }
 
-        if ($password != $password2) {      //Verifico que las contraseñas coincidan
+        //Verifico que las contraseñas coincidan
+        if ($password != $password2) {      
             $this->view->showRegisterForm("Passwords do not match");
             die();
         }
 
-        $users = $this->model->getUsers();     //Obtengo los usuarios
-        foreach ($users as $user) {    // Recorro buscando coincidencias
+        //Obtengo los usuarios
+        $users = $this->model->getUsers();     
+
+        // Recorro buscando coincidencias
+        foreach ($users as $user) {   
             if ($email == $user->mail) {
                 $this->view->showRegisterForm("The email is already in use");
                 die();
             }
         }
 
-
-        if ($_POST['key']!= null){      //Verifico si el usuario ingresó una llave de administrador
-            $userKey = $_POST['key'];
-            $key = $this->model->getKey();
-            if (password_verify($userKey, $key->value)) {
-                $admin = 1;
-            }
-            else {
-                $this->view->showRegisterForm("Wrong key");
-                die();
-            }
-
-        }
         $pw = password_hash($password, PASSWORD_DEFAULT);
-        $this->model->newUser($email,$username,$admin,$pw); //Agregado de usuario a la base de datos
-        header("Location: " . BASE_URL . 'login');      
+        
+        //Agregado de usuario a la base de datos
+        $this->model->newUser($email,$username,$admin,$pw); 
+      
+        //Inicio la sesion
+        $user = $this->model->getByMail($email);
+        if ($username && password_verify($password, $user->password) ) {
+            // armo la sesion del usuario
+            session_start();
+            $_SESSION['ID_USER'] = $user->id;
+            $_SESSION['EMAIL_USER'] = $user->mail;
+            $_SESSION['ADMIN'] = $user->admin;
+        }
+        //Redirijo al home
+        header("Location: " . BASE_URL . 'home');      
     }
 
     function showRegister() {
@@ -96,4 +102,50 @@ class AuthContoller {
         session_destroy();
         header("Location: " . BASE_URL . 'home');
     }
+   
+    /*
+     * Barrera de seguridad para usuario administrador
+     */
+    function onlyAdmins() {
+        if (!isset($_SESSION['ID_USER'])) {
+            header("Location: " . BASE_URL . "login");
+            die(); 
+        }
+        if ($_SESSION['ADMIN'] == '0'){
+            header("Location: " . BASE_URL . "login");
+            die(); 
+        }
+    }
+
+    /*
+    * Control de ABM Usuarios
+    */
+    function crudUsers(){
+        $this->onlyAdmins();
+        $users = $this->model->getUsers();
+        $this->view->crudUsers($users);
+    } 
+
+    //Cambia admin/user ó user/admin
+    function toggleAdmin($id) {
+        $this->onlyAdmins();
+        $user = $this->model->getUser($id);
+        var_dump ($user);
+        if ($user->admin == 1) {
+            $admin=0;
+        } else {
+            $admin=1;
+        }
+        $this->model->updateAdmin($admin,$id);
+        header("Location: " . BASE_URL . 'crudUsers');
+    }
+
+    //Elimina un usuario
+    function removeUser($id) {
+        $this->onlyAdmins();
+        $this->model->removeUser($id);
+        header("Location: " . BASE_URL . crudUsers); 
+        
+    }
+
 }

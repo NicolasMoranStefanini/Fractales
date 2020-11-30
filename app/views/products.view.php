@@ -11,45 +11,51 @@ class ProductsView {
         $this->smarty->assign('title', "Music Store");
     }
 
-    function showItems($items) { //Muestra todos los items
+    //Muestra todos los items
+    function showItems($items) { 
         $this->smarty->assign('items', $items);
         $this->smarty->display('templates/itemList.tpl');
     }
 
-    function showCategorys($categorys) { //Muestra todas las categorias
-        $this->smarty->assign('categorys', $categorys);
+    //Muestra todas las categorias
+    function showCategories($categories) { 
+        $this->smarty->assign('categories', $categories);
         $this->smarty->display('templates/categoryList.tpl');
     }
 
-    function showItem($item) {  //Muestra el detalle de cada item
+    //Muestra el detalle de cada item
+    function showItem($item) {  
         $this->smarty->assign('item', $item);
         $this->smarty->display('templates/itemDetail.tpl');
     }
      
-    function ProductsByCategory($category,$products) {  //Muestra los productos por categoria
+    //Muestra los productos por categoria
+    function ProductsByCategory($category,$products) {  
         $this->smarty->assign('category', $category);
         $this->smarty->assign('products', $products);
         $this->smarty->display('templates/productsbycategory.tpl');
     }
 
-    function crudItems($items , $categorys) { //Muestra el abm productos
+    //Muestra el abm productos
+    function crudItems($items , $categories) {
         $this->smarty->assign('items', $items);
-        $this->smarty->assign('categorys', $categorys);
+        $this->smarty->assign('categories', $categories);
         $this->smarty->display('templates/crudProducts.tpl');
     }
 
-    function showUpdate($product, $categorys){ //Muestra el formulario de edicion
+    //Muestra el formulario de edicion
+    function showUpdate($product, $categories){
         $this->smarty->assign('product', $product);
-        $this->smarty->assign('categorys', $categorys);
+        $this->smarty->assign('categories', $categories);
         $this->smarty->display('templates/updateProduct.tpl');
     }
 
-    function crudCategorys($categorys, $id = null, $category = null, $error = null){
-        $this->smarty->assign('categorys', $categorys);
+    function crudCategories($categories, $id = null, $category = null, $error = null){
+        $this->smarty->assign('categories', $categories);
         $this->smarty->assign('category', $category);
         $this->smarty->assign('id', $id);
         $this->smarty->assign('error', $error);
-        $this->smarty->display('templates/crudCategorys.tpl');
+        $this->smarty->display('templates/crudCategories.tpl');
     }
 
     function showError($msg) {

@@ -18,11 +18,6 @@
                     <label for="confirm-password">Confirm password</label>
                     <input type="password" class="form-control" name="confirm-password" required>
                 </div>
-                <div class="form-group hide" id="form">
-                    <label for="pass-admin">Key</label>
-                    <input type="password" class="form-control" id="pass-admin" name="key">
-                </div>
-
                 {if $error}
                     <div class="alert alert-danger" id="error">
                     {$error}
@@ -30,11 +25,9 @@
                 {/if}
                 <div>
                 <button type="submit" class="btn btn-success w-25 " id="button">Sign me up!</button>
-                <button type="button" class="btn btn-primary w-25" id="admin">Admin</button>
                 </div>
             </form>
             
             <p class="m-2">Already a member? <a href="login"> Log In </a> </p>
             </div>
-            <script src="{BASE_URL}js/main.js"></script>
 {include file='footer.tpl'}

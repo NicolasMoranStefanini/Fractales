@@ -26,7 +26,7 @@
             <div class="form-group">
                 <label>Category</label>
                 <select name="category" class="form-control"> 
-                    {foreach from=$categorys item=category}
+                    {foreach from=$categories item=category}
                         {if $category->id_category == $product->id_category}
                             <option value="{$category->id_category}" selected> {$category->name}  </option>
                             {else}

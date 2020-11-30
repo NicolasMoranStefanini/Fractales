@@ -41,19 +41,19 @@ INSERT INTO `adminkey` (`value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `categorys`
+-- Estructura de tabla para la tabla `categories`
 --
 
-CREATE TABLE `categorys` (
+CREATE TABLE `categories` (
   `id_category` int(11) NOT NULL,
   `name` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `categorys`
+-- Volcado de datos para la tabla `categories`
 --
 
-INSERT INTO `categorys` (`id_category`, `name`) VALUES
+INSERT INTO `categories` (`id_category`, `name`) VALUES
 (2, 'Bass Guitar'),
 (3, 'Electric Guitar'),
 (4, 'Acoustic Guitar'),
@@ -125,9 +125,9 @@ ALTER TABLE `adminkey`
   ADD UNIQUE KEY `value` (`value`) USING HASH;
 
 --
--- Indices de la tabla `categorys`
+-- Indices de la tabla `categories`
 --
-ALTER TABLE `categorys`
+ALTER TABLE `categories`
   ADD PRIMARY KEY (`id_category`);
 
 --
@@ -151,9 +151,9 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT de la tabla `categorys`
+-- AUTO_INCREMENT de la tabla `categories`
 --
-ALTER TABLE `categorys`
+ALTER TABLE `categories`
   MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
@@ -176,7 +176,7 @@ ALTER TABLE `users`
 -- Filtros para la tabla `products`
 --
 ALTER TABLE `products`
-  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `categorys` (`id_category`);
+  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `categories` (`id_category`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

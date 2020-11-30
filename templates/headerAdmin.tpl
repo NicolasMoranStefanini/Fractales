@@ -23,23 +23,21 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav mr-auto">
+           
             <li class="nav-item">
-              <a class="nav-link" href="home">Products <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="crudProducts">Products</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="categorys">Categorys</a>
+            <a class="nav-link" href="crudCategories">Categories</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="crudProducts">CRUD Products</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="crudCategorys">CRUD Categorys</a>
+              <a class="nav-link" href="crudUsers">Users</a>
             </li>
           </ul>
           <ul class="navbar-nav">
               {if isset($smarty.session.EMAIL_USER)}
                 <li class="nav-item">
-                  <a class="nav-link" href="home">{$smarty.session.EMAIL_USER}</a>
+                  <a class="nav-link" >{$smarty.session.EMAIL_USER}</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="logout">Log out</a>

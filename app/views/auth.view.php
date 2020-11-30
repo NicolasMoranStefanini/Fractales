@@ -20,5 +20,9 @@ class AuthView {
         $this->smarty->display('templates/register.tpl');
     }
 
+    function crudUsers($users) { 
+        $this->smarty->assign('users', $users);
+        $this->smarty->display('templates/crudUsers.tpl');
+    }
 
 }

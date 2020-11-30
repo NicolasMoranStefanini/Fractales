@@ -27,13 +27,13 @@
               <a class="nav-link" href="home">Products <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="categorys">Categorys</a>
+              <a class="nav-link" href="categories">Categories</a>
             </li>
           </ul>
           <ul class="navbar-nav">
               {if isset($smarty.session.EMAIL_USER)}
                 <li class="nav-item">
-                  <a class="nav-link" href="home">{$smarty.session.EMAIL_USER}</a>
+                  <a class="nav-link" >{$smarty.session.EMAIL_USER}</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="logout">Log out</a>

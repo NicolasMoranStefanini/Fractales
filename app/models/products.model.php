@@ -45,13 +45,13 @@ class ProductsModel {
     /*
     * Devuelve todas las categorias
     */
-    function getCategorys() {
+    function getCategories() {
         // Envia la consulta 
         $query = $this->db->prepare('SELECT * FROM categorys');
         $query->execute();
         // Obtengo la respuesta con un fetchAll
-        $categorys = $query->fetchAll(PDO::FETCH_OBJ); // arreglo de categorias
-        return $categorys;
+        $categories = $query->fetchAll(PDO::FETCH_OBJ); // arreglo de categorias
+        return $categories;
     }
 
     /*
@@ -80,7 +80,7 @@ class ProductsModel {
     function removeProduct($id) {  
         $query = $this->db->prepare('DELETE FROM products WHERE products.id = ?');
         $query->execute([$id]);
-  }
+    }
 
     /*
     * Actualiza un producto por id
@@ -101,7 +101,7 @@ class ProductsModel {
     }
 
     function insertCategory($name){
-        $query = $this->db->prepare('INSERT INTO `categorys` (`id_category`, `name`) VALUES (NULL, ?)');
+        $query = $this->db->prepare('INSERT INTO `categorys ` (`id_category`, `name`) VALUES (NULL, ?)');
         $query->execute([$name]);
     }
 
@@ -110,7 +110,7 @@ class ProductsModel {
     * Remueve una categoria por id
     */
     function removeCategory($id) {  
-        $query = $this->db->prepare('DELETE FROM `categorys` WHERE categorys.id_category = ?');
+        $query = $this->db->prepare('DELETE FROM `categorys` WHERE categories.id_category = ?');
         $result = $query->execute([$id]);
         return ($result);
      }
@@ -119,7 +119,7 @@ class ProductsModel {
     * Actualiza una categoria por id
     */
     function updateCategory ($name,$id){
-        $query = $this->db->prepare('UPDATE `categorys` SET `name` = ? WHERE categorys.id_category = ?');
+        $query = $this->db->prepare('UPDATE `categorys` SET `name` = ? WHERE categories.id_category = ?');
         $query->execute([$name,$id]);
     }
 
