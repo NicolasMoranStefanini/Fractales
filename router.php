@@ -115,6 +115,6 @@ switch ($params[0]) {
         $controller->removeUser($id);
         break;
     default:
-        echo('404 Page not found');
+    header("HTTP/1.0 404 Not Found");
         break;
 }

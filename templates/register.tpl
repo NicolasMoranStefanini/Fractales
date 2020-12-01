@@ -28,6 +28,6 @@
                 </div>
             </form>
             
-            <p class="m-2">Already a member? <a href="login"> Log In </a> </p>
+            <p class="m-2">Already a user? <a href="login"> Log In </a> </p>
             </div>
 {include file='footer.tpl'}
