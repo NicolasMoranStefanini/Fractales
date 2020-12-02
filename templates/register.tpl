@@ -1,5 +1,6 @@
     {include 'header.tpl'}
-        <div class="mt-5 w-50 mx-auto">
+        <div class="px-5 py-5 mt-5 w-50 mx-auto bg-t">
+            <h2>Create account</h2>
             <form method="POST" action="new-user" class="needs-validation" >
                 <div class="form-group">
                     <label for="username">Username</label>
@@ -28,6 +29,6 @@
                 </div>
             </form>
             
-            <p class="m-2">Already a user? <a href="login"> Log In </a> </p>
+            <p class="m-2">Already a member? <a href="login"> Log In </a> </p>
             </div>
 {include file='footer.tpl'}

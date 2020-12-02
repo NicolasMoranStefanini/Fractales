@@ -1,5 +1,6 @@
     {include 'header.tpl'}
-        <div class="mt-5 w-25 mx-auto needs-validation" novalidated>
+        <div class="mt-5 px-5 py-5 w-50 mx-auto needs-validation bg-t" novalidated>
+            <h2>Log In </h2>
             <form method="POST" action="verify">
                 <div class="form-group">
                     <label for="email">Email</label>
@@ -14,7 +15,7 @@
                     {$error}
                 </div>
                 {/if}
-                <button type="submit" class="btn btn-primary">Entrar</button>
+                <button type="submit" class="btn btn-primary">Enter</button>
             </form>
         </div>
     {include file='footer.tpl'}

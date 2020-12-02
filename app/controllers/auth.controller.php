@@ -37,6 +37,7 @@ class AuthController {
             $_SESSION['ID_USER'] = $user->id;
             $_SESSION['EMAIL_USER'] = $user->mail;
             $_SESSION['ADMIN'] = $user->admin;
+            $_SESSION['NAME'] = $user->nombre;
             // redirige al home
                header("Location: " . BASE_URL . 'home'); 
             
@@ -88,6 +89,7 @@ class AuthController {
             $_SESSION['ID_USER'] = $user->id;
             $_SESSION['EMAIL_USER'] = $user->mail;
             $_SESSION['ADMIN'] = $user->admin;
+            $_SESSION['NAME'] = $user->nombre;
         }
         //Redirijo al home
         header("Location: " . BASE_URL . 'home');      

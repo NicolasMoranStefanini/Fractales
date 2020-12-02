@@ -58,4 +58,23 @@ class UserModel {
         $query = $this->db->prepare('DELETE FROM users WHERE id = ?');
         $query->execute([$id]);
     }
+
+    /*
+    * Obtiene los comentarios por id de producto
+    */
+    function getCommentsById($id) {
+       // $query = $this->db->prepare('SELECT * FROM comment WHERE  id_product = ?');
+        $query = $this->db->prepare('SELECT comment.*, users.nombre from comment INNER JOIN users on comment.id_user=users.id WHERE comment.id_product=?');
+        $query->execute([$id]);
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+    /*
+    * Remueve un comentario por id
+    */
+    function removeComment($id) {
+        $query = $this->db->prepare('DELETE FROM comment WHERE id = ?');
+        $query->execute([$id]);
+        return $query;
+    }
+
 }

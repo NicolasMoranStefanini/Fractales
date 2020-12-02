@@ -1,6 +1,6 @@
 <!-- formulario de modificacion de producto -->
 {include 'headerAdmin.tpl'}
-<form action="doUpdate" method="POST" class="my-4 w-50 m-auto p-4">
+<form action="doUpdate" method="POST" class="my-4 w-50 m-auto p-4 bg-t">
     <div class="row">
         <div class="col-9">
             <div class="form-group">

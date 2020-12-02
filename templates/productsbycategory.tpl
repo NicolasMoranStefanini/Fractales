@@ -3,7 +3,8 @@
     {else}
     {include 'header.tpl'}
 {/if}
-    <h2> {$category->name} </h2>  
+
+    <h2 class="w-50 text-white m-auto"> {$category->name}</h2>  
         <ul class='list-group  w-50 m-auto mt-5'>
         {foreach from=$products item=product}
         <li class='btn btn-dark list-group-item d-flex justify-content-between'>
@@ -15,5 +16,5 @@
             </div>
         </li>
         {/foreach}
-    </ul>
+        </ul>
 {include file='footer.tpl'}

@@ -1,7 +1,7 @@
 {include 'headerAdmin.tpl'}
 <section>    
     <ul class='list-group w-50 m-3 m-auto'>
-    <h1>Users</h1>
+    <h1 class="text-white">Users</h1>
     {foreach from=$users item=user}
         <li class='btn btn-dark list-group-item d-flex justify-content-between'>
         <div class='info text-muted'>

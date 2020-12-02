@@ -2,7 +2,7 @@
 
 <section>    
 <ul class='list-group w-50 m-3 m-auto'>
-<h1>Categories</h1>
+<h1 class="text-white">Categories</h1>
 {foreach from=$categories item=category}
     <li class='btn btn-dark list-group-item d-flex justify-content-between'>
         <div class='info text-muted'>

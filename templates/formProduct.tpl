@@ -1,5 +1,6 @@
 <!-- formulario de alta de producto -->
-<form action="newProduct" method="POST" class="my-4 w-50 m-auto p-4">
+<form action="newProduct" method="POST" class="my-4 w-50 m-auto p-4 bg-t">
+    <h3 class="text-muted"> New product </h3>
     <div>
         <label>Name</label>
         <input name="name" type="text" class="form-control">

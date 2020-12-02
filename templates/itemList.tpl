@@ -3,6 +3,7 @@
     {else}
     {include 'header.tpl'}
 {/if}
+        <h1 class="text-white w-50 m-auto">Products</h1>
         <ul class='list-group w-50 m-auto'>
             {foreach from=$items item=item}
             <li class='btn btn-dark list-group-item d-flex justify-content-between'>

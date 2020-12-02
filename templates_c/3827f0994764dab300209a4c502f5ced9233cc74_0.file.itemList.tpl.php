@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-09 08:45:03
+/* Smarty version 3.1.34-dev-7, created on 2020-12-01 22:16:08
   from 'C:\xampp\htdocs\proyectos\TPE\TPE1-WEBII\templates\itemList.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f8006ef32da68_66888523',
+  'unifunc' => 'content_5fc6b298a93745_03745775',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3827f0994764dab300209a4c502f5ced9233cc74' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyectos\\TPE\\TPE1-WEBII\\templates\\itemList.tpl',
-      1 => 1602225901,
+      1 => 1606857367,
       2 => 'file',
     ),
   ),
@@ -23,13 +23,14 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5f8006ef32da68_66888523 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fc6b298a93745_03745775 (Smarty_Internal_Template $_smarty_tpl) {
 if ((isset($_SESSION['EMAIL_USER'])) && $_SESSION['ADMIN'] == '1') {?>
     <?php $_smarty_tpl->_subTemplateRender('file:headerAdmin.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
     <?php } else { ?>
     <?php $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 }?>
+        <h1 class="text-white w-50 m-auto">Products</h1>
         <ul class='list-group w-50 m-auto'>
             <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['items']->value, 'item');
