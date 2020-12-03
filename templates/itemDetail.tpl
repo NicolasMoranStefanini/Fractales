@@ -4,9 +4,16 @@
     {include 'header.tpl'}
   {/if}
     <main class="container w-50 bg-t"> <!-- inicio del contenido pricipal -->
-            <h1>{$item->brand}</h1>
-            <h3>{$item->name}</h3>
-            <p>{$item->details}</p>  
+          <div class="row">
+            <div class="col">
+              <img style="width: 500px;" src="{$item->image}">
+            </div>  
+            <div class="col">
+              <h1>{$item->brand}</h1>
+              <h3>{$item->name}</h3>
+              <p>{$item->details}</p> 
+            </div>
+          </div> 
     </main>
     <aside class="container bg-t2 w-50"> <!-- inicio comentarios -->
       {if isset($smarty.session.EMAIL_USER)}
@@ -32,7 +39,6 @@
           </div>
           <h6>Only users can comment this item.</h6>
           <p class="m-2">Already a user? <a href="login"> Log In </a> or <a href="register">Create account</a>.</p>
-
       {/if}
     </aside>
     <script src="{BASE_URL}js/comments.js"></script>

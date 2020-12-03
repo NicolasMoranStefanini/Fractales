@@ -1,6 +1,6 @@
 <!-- formulario de modificacion de producto -->
 {include 'headerAdmin.tpl'}
-<form action="doUpdate" method="POST" class="my-4 w-50 m-auto p-4 bg-t">
+<form action="doUpdate" method="POST" class="my-4 w-50 m-auto p-4 bg-t" enctype="multipart/form-data">
     <div class="row">
         <div class="col-9">
             <div class="form-group">
@@ -40,6 +40,10 @@
     <div class="form-group">
         <label>Description</label>
         <textarea name="details" class="form-control" rows="3">{$product->details}</textarea>
+    </div>
+    <div class="form-group">
+        <label>Img</label>
+        <input type="file" name="image"  class="form-control" id="imageToUpload">
     </div>
     <button type="submit" class="btn btn-primary">Update product</button>
     <button type="reset" class="btn btn-info">Reset</button>

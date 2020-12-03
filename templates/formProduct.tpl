@@ -1,5 +1,5 @@
 <!-- formulario de alta de producto -->
-<form action="newProduct" method="POST" class="my-4 w-50 m-auto p-4 bg-t">
+<form action="newProduct" method="POST" class="my-4 w-50 m-auto p-4 bg-t" enctype="multipart/form-data">
     <h3 class="text-muted"> New product </h3>
     <div>
         <label>Name</label>
@@ -26,6 +26,10 @@
     <div class="form-group">
         <label>Description</label>
         <textarea name="details" class="form-control" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+        <label>Img</label>
+        <input type="file" name="image"  class="form-control" id="imageToUpload">
     </div>
     <button type="submit" class="btn btn-primary">New product</button>
     <button type="reset" class="btn btn-info">Blank</button>

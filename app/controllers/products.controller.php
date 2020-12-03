@@ -13,18 +13,18 @@ class ProductsController {
         session_start();
     }
 
-    /*
-    * Consulta e imprime todos los productos
-    */
+/*
+* Consulta e imprime todos los productos
+*/
     function showItems(){
         // obtiene los productos del modelo
         $items = $this->model->getAll();  
         $this->view->showItems($items);
     }   
 
-    /*
-    * Consulta e imprime el detalle de cada item
-    */
+/*
+* Consulta e imprime el detalle de cada item
+*/
     function showDetail($id) {
         $item = $this->model->get($id);
         if($item) {
@@ -34,18 +34,18 @@ class ProductsController {
         }
     }
 
-    /*
-    * Consulta e imprime todas las categorias
-    */
+/*
+* Consulta e imprime todas las categorias
+*/
     function showCategories(){
         // obtiene los productos del modelo
         $categories = $this->model->getCategories();  
         $this->view->showCategories($categories);
     } 
     
-    /*
-    * Obtiene y muestra los productos por categoria
-    */
+/*
+* Obtiene y muestra los productos por categoria
+*/
     function showProductsCategory($id_cat) {
         $category = $this->model->getCategoryById($id_cat);
         $products = $this->model->getProductsByCategoryId($id_cat);
@@ -53,9 +53,9 @@ class ProductsController {
     
     }
 
-     /*
-     * Barrera de seguridad para usuario administrador
-     */
+/*
+* Barrera de seguridad para usuario administrador
+*/
     function onlyAdmins() {
         if (!isset($_SESSION['ID_USER'])) {
             header("Location: " . BASE_URL . "login");
@@ -66,9 +66,9 @@ class ProductsController {
             die(); 
         }
     }   
-    /*
-    * Control de ABM productos
-    */
+/*
+* Control de ABM productos
+*/
     function crudItems(){
         $this->onlyAdmins();
         // obtiene los productos del modelo
@@ -77,18 +77,18 @@ class ProductsController {
         $this->view->crudItems($items,$categories);
     } 
     
-        /*
-        * Elimina el producto del sistema
-        */
+/*
+* Elimina el producto del sistema
+*/
         function deleteProduct($id) {
             $this->onlyAdmins();
             $this->model->removeProduct($id);
             header("Location: " . BASE_URL . crudProducts); 
         }
 
-        /*
-        * Modifica un producto
-        */
+/*
+* Modifica un producto
+*/
         function updateProduct($id) {
             $this->onlyAdmins();
             $categories = $this->model->getCategories();
@@ -96,9 +96,9 @@ class ProductsController {
             $this->view->showUpdate($product,$categories);
         }
 
-        /*
-        * Realiza la actualizacion
-        */
+/*
+* Realiza la actualizacion
+*/
         function doUpdate(){
             $this->onlyAdmins();
             $name = $_POST['name'];
@@ -106,26 +106,40 @@ class ProductsController {
             $details = $_POST['details'];
             $category = $_POST['category'];
             $id = $_POST['id'];
-            $this->model->updateProduct($name, $brand, $details, $category, $id);
+            $this->model->updateProduct($name, $brand, $details, $category);
             header("Location: " . BASE_URL . crudProducts); 
         }
 
-        /*
-        * Agrega un producto
-        */
+/*
+* Agrega un producto
+*/
         function newProduct() {
             $this->onlyAdmins();
             $name = $_POST['name'];
             $brand = $_POST['brand'];
             $details = $_POST['details'];
             $category = $_POST['category'];
-            $this->model->insertProduct($name, $brand, $details, $category);
+            // verifico campos obligatorios
+            if (empty($name) || empty($brand) || empty($details) || empty($category)) {
+                $this->view->showError('Faltan datos obligatorios');
+                die();
+            }
+            $fileLocation = 'img/unknown.png';
+            $check = getimagesize($_FILES['image']['tmp_name']);
+            // inserto la tarea en la DB
+            if ($check){
+                $fileLocation = 'img/' . basename($_FILES['image']["name"]); 
+                move_uploaded_file($_FILES['image']['tmp_name'], $fileLocation);
+                $this->model->insertProduct($name, $brand, $details, $category, $fileLocation);
+            } else {
+                $this->model->insertProduct($name, $brand, $details, $category, $fileLocation );
+            }
             header("Location: " . BASE_URL . crudProducts); 
         }
 
-    /*
-    * Control de ABM Categorias
-    */
+/*
+* Control de ABM Categorias
+*/
     function crudCategories($id = null){
         $this->onlyAdmins();
         $categories = $this->model->getCategories();
@@ -133,9 +147,9 @@ class ProductsController {
         $this->view->crudCategories($categories,$id,$category);
     } 
 
-        /*
-        * Nueva categoria
-        */
+/*
+* Nueva categoria
+*/
         function newCategory() {
             $this->onlyAdmins();
             $name = $_POST['name'];
@@ -143,9 +157,9 @@ class ProductsController {
             header("Location: " . BASE_URL . crudCategories); 
         }
 
-        /*
-        * Elimina una categoria por id
-        */
+/*
+* Elimina una categoria por id
+*/
         function deleteCategory($id) {
             $this->onlyAdmins();
             $result = $this->model->removeCategory($id);
@@ -157,9 +171,9 @@ class ProductsController {
             }
         }
 
-        /*
-        * Modifica una categoria por id
-        */
+/*
+* Modifica una categoria por id
+*/
         function doUpdateCategory() {
             $this->onlyAdmins();
             $name = $_POST['name'];
@@ -167,5 +181,4 @@ class ProductsController {
             $this->model->updateCategory($name,$id);
             header("Location: " . BASE_URL . crudCategories); 
         }
-
 }

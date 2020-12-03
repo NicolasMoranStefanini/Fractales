@@ -85,19 +85,27 @@ class ProductsModel {
     /*
     * Actualiza un producto por id
     */
-    function updateProduct($name, $brand, $details, $category, $id) {
-
-        $query = $this->db->prepare('UPDATE `products` SET `brand` = ?, `details`=?, `name`=?, `id_category`=? WHERE `products`.`id` = ?');
-        $query->execute([$brand,$details,$name,$category,$id]);
+    function updateProduct($name, $brand, $details, $category, $id, $img=null) {
+        if ($img) {
+            $sql = 'UPDATE `products` SET `brand` = ?, `details`=?, `name`=?, `id_category`=?,  `image`=? WHERE `products`.`id` = ?';
+            $params = [$name, $brand, $details, $category, $id, $img];
+        }
+        else {
+            $sql = 'UPDATE `products` SET `brand` = ?, `details`=?, `name`=?, `id_category`=? WHERE `products`.`id` = ?';
+            $params = [$name, $brand, $details, $category, $id];
+        }
+        $query = $this->db->prepare($sql);
+        $query->execute($params);
     }
 
     /*
     * Inserta un producto
     */
-    function insertProduct($name, $brand, $details, $category) {
-        $query = $this->db->prepare('INSERT INTO products (`name`, brand, details, id_category) VALUES (?,?,?,?)');
-        $query->execute([$name, $brand, $details, $category]);
-        //return $this->db->lastInsertId();
+    function insertProduct($name, $brand, $details, $category, $img = null) {
+        $sql = 'INSERT INTO products (name, brand, details,id_category ,image ) VALUES (?,?,?,?,?)';
+        $params = [$name, $brand, $details, $category, $img];
+        $query = $this->db->prepare($sql);
+        $query->execute($params);
     }
 
     function insertCategory($name){
