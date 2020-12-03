@@ -8,9 +8,8 @@ document.addEventListener('DOMContentLoaded', e => {
     getComments(location);
     document.querySelector('#comment-form').addEventListener('submit', e => {
         e.preventDefault();
-        addComment(location);
-    });
-
+        addComment(location,id);
+    })
 });
 
 async function getComments(location) {
@@ -26,13 +25,20 @@ async function getComments(location) {
 function renderComments(comments) {
     let container = document.querySelector('#comments-list');
     container.innerHTML = '';
+    //si el contenedor es de administrador, envía la clase admin para insertar el boton DELETE ((Seguridad en controller))
+    let admin = container.classList.contains('admin');
     for (let comment of comments) {
         let rating = comment.rating;
         rating = stars(rating);
-        container.innerHTML += `<li class='w-100 list-group-item d-flex justify-content-between'> <div>${comment.nombre}</div> <div>${comment.comment}</div> <div>${rating}</div> </li>`
+        if (admin){
+            container.innerHTML += `<li class='w-100 list-group-item d-flex justify-content-between'> <strong class='textmuted'>
+            ${comment.nombre}</strong> <div>${comment.comment}</div> <div>${rating}</div> <button class='btn btn-danger btn-sm btn' name='${comment.id}'> DELETE </button> </li>`;
+        }else{
+            container.innerHTML += `<li class='w-100 list-group-item d-flex justify-content-between'> <strong class='textmuted'>${comment.nombre}</strong>
+            <div>${comment.comment}</div> <div>${rating}</div></li>`
+        }
     }
 }
-
 
 function stars(rating){
     let stars;
@@ -56,28 +62,42 @@ function stars(rating){
     return stars;
 }
 
-async function addComment(location) {
+async function addComment(location,id) {
 
     // armo el objeto comentario
     const comment = {
-        username: document.querySelector('Nicolas?').value,
-        text: document.querySelector('textarea[name=comment]').value,
-        rating: document.querySelector('select[name=rating]').value,
-        id_product: id
+        id_product: id,
+        id_user: document.querySelector('input[name=id-user]').value,
+        text: document.querySelector('textarea[name=commentText]').value,
+        rating: document.querySelector('select[name=rating]').value
     }
+    console.log(comment);
 
     try {
-        const response = await fetch(location , {
+        await fetch(location , {
             method: 'POST',
             headers: {'Content-Type': 'application/json'}, 
             body: JSON.stringify(comment)
         });
 
-        const t = await response.json();
-        app.comments.push(t);
+        getComments(location);
 
     } catch(e) {
         console.log(e);
     }
+}
 
+ function deleteComment(id_comment,location) {
+    console.log(id_comment);
+    /*try {
+        await fetch(`api/comments/${id_comment}` , {
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json'}, 
+            body: JSON.stringify(id_comment)
+        });
+
+        getComments(location);
+    } catch(e) {
+        console.log(e);
+    }*/
 }

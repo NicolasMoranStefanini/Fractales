@@ -77,4 +77,9 @@ class UserModel {
         return $query;
     }
 
+    function addComment($id_product, $id_user, $text, $rating) {
+        $query = $this->db->prepare('INSERT INTO `comment` (`id`, `id_product`, `id_user`, `comment`, `rating`) VALUES (NULL, ?, ?, ?, ?)');
+        $query->execute([$id_product, $id_user, $text, $rating]);
+        return $this->db->lastInsertId();
+    }
 }

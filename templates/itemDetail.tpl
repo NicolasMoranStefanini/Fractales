@@ -11,8 +11,8 @@
     <aside class="container bg-t2 w-50"> <!-- inicio comentarios -->
       {if isset($smarty.session.EMAIL_USER)}
         {if $smarty.session.ADMIN == '1'}
-          <div class='comments'>
-            <ul id="comments-list" class='list-group w-100 m-auto'>
+          <div class='comments px-4 py-4'>
+            <ul id="comments-list" class='admin list-group w-100 m-auto'>
             </ul>
           </div>
           <h4>Make a review</h4>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-12-02 09:03:00
+/* Smarty version 3.1.34-dev-7, created on 2020-12-03 07:01:12
   from 'C:\xampp\htdocs\proyectos\TPE\TPE1-WEBII\templates\itemDetail.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5fc74a345daa94_44530817',
+  'unifunc' => 'content_5fc87f283d5e59_85306834',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '83145a8df1195e92486404a0cdc4c9d12ad35cfd' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyectos\\TPE\\TPE1-WEBII\\templates\\itemDetail.tpl',
-      1 => 1606896168,
+      1 => 1606975271,
       2 => 'file',
     ),
   ),
@@ -24,7 +24,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5fc74a345daa94_44530817 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fc87f283d5e59_85306834 (Smarty_Internal_Template $_smarty_tpl) {
 if ((isset($_SESSION['EMAIL_USER'])) && $_SESSION['ADMIN'] == '1') {?>
     <?php $_smarty_tpl->_subTemplateRender('file:headerAdmin.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
@@ -43,8 +43,8 @@ if ((isset($_SESSION['EMAIL_USER'])) && $_SESSION['ADMIN'] == '1') {?>
     <aside class="container bg-t2 w-50"> <!-- inicio comentarios -->
       <?php if ((isset($_SESSION['EMAIL_USER']))) {?>
         <?php if ($_SESSION['ADMIN'] == '1') {?>
-          <div class='comments'>
-            <ul id="comments-list" class='list-group w-100 m-auto'>
+          <div class='comments px-4 py-4'>
+            <ul id="comments-list" class='admin list-group w-100 m-auto'>
             </ul>
           </div>
           <h4>Make a review</h4>

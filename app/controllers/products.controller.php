@@ -65,10 +65,7 @@ class ProductsController {
             header("Location: " . BASE_URL . "login");
             die(); 
         }
-    }
-
-
-    
+    }   
     /*
     * Control de ABM productos
     */
@@ -172,4 +169,3 @@ class ProductsController {
         }
 
 }
-
