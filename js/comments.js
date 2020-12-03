@@ -32,7 +32,7 @@ function renderComments(comments) {
         rating = stars(rating);
         if (admin){
             container.innerHTML += `<li class='w-100 list-group-item d-flex justify-content-between'> <strong class='textmuted'>
-            ${comment.nombre}</strong> <div>${comment.comment}</div> <div>${rating}</div> <button class='btn btn-danger btn-sm btn' name='${comment.id}'> DELETE </button> </li>`;
+            ${comment.nombre}</strong> <div>${comment.comment}</div> <div>${rating}</div> <button class='btn btn-danger btn-sm btn' onclick='deleteComment(${comment.id})'> DELETE </button> </li>`;
         }else{
             container.innerHTML += `<li class='w-100 list-group-item d-flex justify-content-between'> <strong class='textmuted'>${comment.nombre}</strong>
             <div>${comment.comment}</div> <div>${rating}</div></li>`
@@ -87,17 +87,20 @@ async function addComment(location,id) {
     }
 }
 
- function deleteComment(id_comment,location) {
-    console.log(id_comment);
-    /*try {
+ async function deleteComment(id_comment) {
+    let url = window.location.pathname;
+    let array = url.split('/');
+    let id = array[array.length-1];   
+    const location = `api/comments/${id}`;
+    try {
         await fetch(`api/comments/${id_comment}` , {
             method: 'DELETE',
             headers: {'Content-Type': 'application/json'}, 
             body: JSON.stringify(id_comment)
         });
-
         getComments(location);
+        
     } catch(e) {
         console.log(e);
-    }*/
+    }
 }

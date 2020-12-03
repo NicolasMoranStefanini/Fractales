@@ -145,8 +145,13 @@ class AuthController {
     //Elimina un usuario
     function removeUser($id) {
         $this->onlyAdmins();
-        $this->model->removeUser($id);
-        header("Location: " . BASE_URL . crudUsers); 
+        $a = $this->model->removeUser($id);
+        if ($a){
+            header("Location: " . BASE_URL . crudUsers); 
+        }{
+            //Asumo error para evitar bug
+            $this->view->showError('Existen comentarios asociados a este usuario. Eliminelos antes de proceder');
+        }
         
     }
 
