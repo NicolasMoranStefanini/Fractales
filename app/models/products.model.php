@@ -13,7 +13,7 @@ class ProductsModel {
      * Abre conexión a la base de datos;
      */
     private function connect() {
-        $db = new PDO('mysql:host=localhost;'.'dbname=db_music_store;charset=utf8', 'root', '');
+        $db = new PDO('mysql:host=localhost;'.'dbname=db_my_stock;charset=utf8', 'root', '');
         return $db;
     }
 
@@ -79,7 +79,7 @@ class ProductsModel {
     */
     function removeProduct($id) {  
         $query = $this->db->prepare('DELETE FROM products WHERE products.id = ?');
-        $query->execute([$id]);
+        return $query->execute([$id]);
     }
 
     /*

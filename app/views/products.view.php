@@ -8,9 +8,13 @@ class ProductsView {
 
     function __construct() {
         $this->smarty = new Smarty();
-        $this->smarty->assign('title', "Music Store");
+        $this->smarty->assign('title', "myStock");
     }
 
+
+    function showHome() {
+        $this->smarty->display('templates/home.tpl');
+    }
     //Muestra todos los items
     function showItems($items) { 
         $this->smarty->assign('items', $items);

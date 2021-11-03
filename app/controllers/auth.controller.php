@@ -39,7 +39,7 @@ class AuthController {
             $_SESSION['ADMIN'] = $user->admin;
             $_SESSION['NAME'] = $user->nombre;
             // redirige al home
-               header("Location: " . BASE_URL . 'home'); 
+               header("Location: " . BASE_URL . 'crudProducts'); 
             
         } else {
             $this->view->showFormLogin("Wrong Data");
@@ -92,7 +92,7 @@ class AuthController {
             $_SESSION['NAME'] = $user->nombre;
         }
         //Redirijo al home
-        header("Location: " . BASE_URL . 'home');      
+        header("Location: " . BASE_URL . 'crudProducts');      
     }
 
     function showRegister() {
@@ -102,7 +102,7 @@ class AuthController {
     function logout() {
         session_start();
         session_destroy();
-        header("Location: " . BASE_URL . 'home');
+        header("Location: " . BASE_URL . 'login');
     }
    
     /*
@@ -145,14 +145,13 @@ class AuthController {
     //Elimina un usuario
     function removeUser($id) {
         $this->onlyAdmins();
-        $a = $this->model->removeUser($id);
-        if ($a){
+        $lastId = $this->model->removeUser($id);
+        if ($lastId){
             header("Location: " . BASE_URL . crudUsers); 
-        }{
-            //Asumo error para evitar bug
-            $this->view->showError('Existen comentarios asociados a este usuario. Eliminelos antes de proceder');
         }
-        
+        else{
+            //Asumo error para evitar bug
+            $this->view->showError('Existen datos relacionados a este usuario, eliminelos');
+        }
     }
-
 }

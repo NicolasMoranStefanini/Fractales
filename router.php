@@ -10,7 +10,7 @@ define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] 
 if (!empty($_GET['action'])) {
     $action = $_GET['action'];
 } else {
-    $action = 'home'; // acción por defecto si no envían
+    $action = 'login'; // acción por defecto si no envían
 }
 
 // parsea la accion
@@ -18,18 +18,18 @@ $params = explode('/', $action);
 
 // determina que camino seguir según la acción
 switch ($params[0]) {
-    case 'home':
+    case 'categorys':
         $controller = new ProductsController();
-        $controller->showItems();
+        $controller->showCategories();
+        break;
+    case 'products':
+        $controller = new ProductsController();
+        $controller->showProducts();
         break;
     case 'watch':
         $controller = new ProductsController();
         $id = $params[1];
         $controller->showDetail($id);
-        break;
-    case 'categories':
-        $controller = new ProductsController();
-        $controller->showCategories();
         break;
     case 'category':
         $controller = new ProductsController();
@@ -115,6 +115,7 @@ switch ($params[0]) {
         $controller->removeUser($id);
         break;
     default:
-    header("HTTP/1.0 404 Not Found");
+        $controller = new ProductsController();
+        $controller->categoryList();
         break;
 }

@@ -1,4 +1,4 @@
-{include 'headerAdmin.tpl'}
+{include 'header.tpl'}
 
 <section>    
 <ul class='list-group w-50 m-3 m-auto'>

@@ -1,9 +1,7 @@
-.style{
-    background: url('https://mcdn.wallpapersafari.com/medium/73/12/RSQu1p.jpg');   
+w-75{
+    width: 75%;
 }
-.bg-t{
-    background-color: rgba(224, 217, 217, 0.726);
-}
-.bg-t2{
-    background-color: rgba(160, 160, 160, 0.671);
+
+w-25{
+    width: 25%;
 }

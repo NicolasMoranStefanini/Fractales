@@ -8,7 +8,7 @@ class UserModel {
     }
 
     private function connect() {
-        $db = new PDO('mysql:host=localhost;'.'dbname=db_music_store;charset=utf8', 'root', '');
+        $db = new PDO('mysql:host=localhost;'.'dbname=db_my_stock;charset=utf8', 'root', '');
         return $db;
     }
 

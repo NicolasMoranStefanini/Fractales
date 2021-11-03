@@ -7,7 +7,7 @@ class AuthView {
 
     function __construct() {
         $this->smarty = new Smarty();
-        $this->smarty->assign('title', "Music Store");
+        $this->smarty->assign('title', "myStock");
     }
 
     function showFormLogin($error = null) {
