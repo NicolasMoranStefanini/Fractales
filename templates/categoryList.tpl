@@ -1,8 +1,4 @@
-{if isset($smarty.session.EMAIL_USER) && $smarty.session.ADMIN == '1'}
-  {include 'headerAdmin.tpl'}
-  {else}
-  {include 'header.tpl'}
-{/if}
+{include 'header.tpl'}
     <h1 class="text-white w-50 m-auto">Categories</h1>
     <ul class='list-group w-50 m-auto mt-3'>
         {foreach from=$categories item=category}

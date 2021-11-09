@@ -5,8 +5,8 @@
         <input name="id" type="text" class="form-control w-25" value="{$category->id_category}" readonly>
     </div>
     <div class='actions'>
-        <button type="submit" class='btn btn-success btn-sm'>EDIT</button>
-        <button type="reset" class='btn btn-success btn-sm'>RESET</button>
+        <button type="submit" class='btn btn-success btn-sm'>MODIFICAR</button>
+        <button type="reset" class='btn btn-success btn-sm'>RESTRABLECER</button>
     </div>
 </div>
 </form>

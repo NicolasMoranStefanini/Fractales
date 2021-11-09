@@ -27,20 +27,29 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
-          {if isset($smarty.session.EMAIL_USER)}
+          {if (isset($smarty.session.EMAIL_USER) && ($smarty.session.ADMIN==1) )}
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-              <a class="nav-link" href="crudProducts">Products</a>
+              <a class="nav-link" href="crudProducts">ABM Productos</a>
               </li>
               <li class="nav-item">
-              <a class="nav-link" href="crudCategories">Categories</a>
+              <a class="nav-link" href="crudCategories">ABM Categorias</a>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link" href="crudUsers">ABM Usuarios</a>
               </li>
             </ul>
-            {else}
+            {elseif isset($smarty.session.EMAIL_USER)}
               <ul class="navbar-nav mr-auto">
-
+              <li class="nav-item">
+              <a class="nav-link" href="product">Productos</a>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link" href="category">Categorias</a>
+              </li>
               </ul>
-          {/if}
+            {/if}
+
           
           <ul class="navbar-nav">
               {if isset($smarty.session.EMAIL_USER)}
@@ -48,13 +57,7 @@
                     <a class="nav-link" >{$smarty.session.EMAIL_USER}</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="logout">Log out</a>
-                  </li>
-                {else}
-                  <li class="nav-item">
-                    <a class="nav-link active" href="login">Log In</a>
-                  </li>
-                  <li class="nav-item ">
+                    <a class="nav-link" href="logout">Salir</a>
                   </li>
               {/if}
           </ul>

@@ -1,16 +1,19 @@
 <?php
 include_once 'app/views/auth.view.php';
 include_once 'app/models/user.model.php';
+include_once 'app/helpers/auth.helper.php';
 
 class AuthController {
 
     private $model;
     private $view;
+    private $authHelper;
 
     public function __construct() {
         $this->model = new UserModel();
         $this->view = new AuthView();
-        session_start();
+        $this->authHelper = new AuthHelper();
+        session_start(); 
     }
 
     public function showLogin() {
@@ -39,7 +42,7 @@ class AuthController {
             $_SESSION['ADMIN'] = $user->admin;
             $_SESSION['NAME'] = $user->nombre;
             // redirige al home
-               header("Location: " . BASE_URL . 'crudProducts'); 
+               header("Location: " . BASE_URL ); 
             
         } else {
             $this->view->showFormLogin("Wrong Data");
@@ -96,7 +99,8 @@ class AuthController {
     }
 
     function showRegister() {
-      $this->view->showRegisterForm();
+        $this->authHelper->checkAdmin();
+        $this->view->showRegisterForm();
     }
 
     function logout() {
@@ -104,33 +108,19 @@ class AuthController {
         session_destroy();
         header("Location: " . BASE_URL . 'login');
     }
-   
-    /*
-     * Barrera de seguridad para usuario administrador
-     */
-    function onlyAdmins() {
-        if (!isset($_SESSION['ID_USER'])) {
-            header("Location: " . BASE_URL . "login");
-            die(); 
-        }
-        if ($_SESSION['ADMIN'] == '0'){
-            header("Location: " . BASE_URL . "login");
-            die(); 
-        }
-    }
 
     /*
     * Control de ABM Usuarios
     */
     function crudUsers(){
-        $this->onlyAdmins();
+        $this->authHelper->checkAdmin();
         $users = $this->model->getUsers();
         $this->view->crudUsers($users);
     } 
 
     //Cambia admin/user ó user/admin
     function toggleAdmin($id) {
-        $this->onlyAdmins();
+        $this->authHelper->checkAdmin();
         $user = $this->model->getUser($id);
         var_dump ($user);
         if ($user->admin == 1) {
@@ -144,7 +134,7 @@ class AuthController {
 
     //Elimina un usuario
     function removeUser($id) {
-        $this->onlyAdmins();
+        $this->authHelper->checkAdmin();
         $lastId = $this->model->removeUser($id);
         if ($lastId){
             header("Location: " . BASE_URL . crudUsers); 

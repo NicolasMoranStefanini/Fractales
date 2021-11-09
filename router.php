@@ -18,18 +18,18 @@ $params = explode('/', $action);
 
 // determina que camino seguir según la acción
 switch ($params[0]) {
-    case 'categorys':
+    case 'category':
         $controller = new ProductsController();
-        $controller->showCategories();
+        $controller->category();
         break;
-    case 'products':
+    case 'product':
         $controller = new ProductsController();
-        $controller->showProducts();
+        $controller->product();
         break;
     case 'watch':
         $controller = new ProductsController();
         $id = $params[1];
-        $controller->showDetail($id);
+        $controller->productDetail($id);
         break;
     case 'category':
         $controller = new ProductsController();

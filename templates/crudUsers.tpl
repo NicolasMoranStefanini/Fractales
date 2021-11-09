@@ -1,9 +1,9 @@
 {include 'header.tpl'}
 <section>    
-    <ul class='list-group w-50 m-3 m-auto'>
-    <h1 class="text-white">Users</h1>
+<ul class='list-group w-50 m-3 m-auto'>
+<h2 class="text-dark">Usuarios</h2>
     {foreach from=$users item=user}
-        <li class='btn btn-dark list-group-item d-flex justify-content-between'>
+        <li class='list-group-item d-flex justify-content-between'>
         <div class='info text-muted'>
             <strong>{$user->nombre}</strong>
         </div>
@@ -20,4 +20,5 @@
     {/foreach}
     </ul>
 </section>
+{include file='register.tpl'}
 {include file='footer.tpl'}

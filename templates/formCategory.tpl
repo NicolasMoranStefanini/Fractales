@@ -4,7 +4,7 @@
         <input name="name" type="text" class="form-control">
     </div>
     <div class='actions'>
-        <button type="submit" class='btn btn-success btn-sm'>NEW CATEGORY</button>
+        <button type="submit" class='btn btn-success btn-sm'>NUEVA CATEGORIA</button>
     </div>
 </div>
 </form>

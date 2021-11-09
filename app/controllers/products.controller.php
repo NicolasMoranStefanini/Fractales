@@ -16,14 +16,10 @@ class ProductsController {
         $this->authHelper->checkLogged();
     }
 
-    function showHome(){
-        $this->view->showHome();
-    }
-
     /*
     * Consulta e imprime el detalle de cada item
     */
-    function showDetail($id) {
+    function productDetail($id) {
         $item = $this->model->get($id);
         if($item) {
             $this->view->showItem($item);}
@@ -33,21 +29,21 @@ class ProductsController {
     }
 
     /*
-    * Consulta e imprime todas las categorias
+    * Consulta e imprime todos los productos
     */
-    function showCategories(){
-        // obtiene las categorias
-        $categories = $this->model->getCategories();  
-        $this->view->showCategories($categories);
-    } 
+    function product(){
+        // obtiene los productos del modelo
+        $items = $this->model->getAll();  
+        $this->view->showItems($items);
+    }   
 
     /*
     * Consulta e imprime todas las categorias
     */
-    function show(){
+    function category(){
         // obtiene las categorias
-        $categories = $this->model->getCategories();  
-        $this->view->showCategories($categories);
+        $cat = $this->model->getCategories();  
+        $this->view->showCategories($cat);
     } 
 
     
